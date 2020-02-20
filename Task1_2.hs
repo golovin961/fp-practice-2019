@@ -1,54 +1,59 @@
-module Task1_2 where
+module Main where
+
+import Prelude hiding (cos, sin, gcd)
 
 {-
   Задание 1.2
   Необходимо реализовать четыре любые функции в данном файле
 -}
 
-import Todo(todo)
+factorial :: Double -> Double
+factorial 0 = 1
+factorial n | n > 0 = n * factorial (n-1)
+            | n < 0 = error "arg must be >=0"
 
 -- синус числа (формула Тейлора)
-sin :: Double -> Double
-sin x = todo
+sin :: Double -> Int -> Double
+
+sin x 0 = x
+sin x n = sin x (n-1) + (-1)^n*x^(2*n+1) / (factorial (2*n+1))
+            where factorial f = fromIntegral $ product [1..f]
 
 -- косинус числа (формула Тейлора)
-cos :: Double -> Double
-cos x = todo
+cos :: Double -> Int -> Double
+
+cos x 0 = 1
+cos x n = cos x (n-1) + ((-1)^(n))*x^(2*n) / (factorial (2*n))
+            where factorial f = fromIntegral $ product [1..f]
+
 
 -- наибольший общий делитель двух чисел
 gcd :: Integer -> Integer -> Integer
-gcd x y = todo
 
--- существует ли полный целочисленный квадрат в диапазоне [from, to)?
-doesSquareBetweenExist :: Integer -> Integer -> Bool
-doesSquareBetweenExist from to = todo
-
--- является ли дата корректной с учётом количества дней в месяце и
--- вискокосных годов?
-isDateCorrect :: Integer -> Integer -> Integer -> Bool
-isDateCorrect day month year = todo
-
--- возведение числа в степень, duh
--- готовые функции и плавающую арифметику использовать нельзя
-pow :: Integer -> Integer -> Integer
-pow x y = todo
+gcd x y
+      | y == 0    = x
+      | x == 0    = y
+      | otherwise = gcd y (mod x y)
 
 -- является ли данное число простым?
 isPrime :: Integer -> Bool
-isPrime x = todo
+isPrime 1 = False
+isPrime 2 = True
+isPrime x | (length [n | n <- [2 .. x-1], mod x n == 0]) > 0 = False
+          | otherwise = True
 
-type Point2D = (Double, Double)
-
--- рассчитайте площадь многоугольника по формуле Гаусса
--- многоугольник задан списком координат
-shapeArea :: [Point2D] -> Double
-shapeArea points = todo
-
--- треугольник задан своими координатами.
--- функция должна вернуть
---  0, если он тупоугольный
---  1, если он остроугольный
---  2, если он прямоугольный
---  -1, если это не треугольник
-triangleKind :: Point2D -> Point2D -> Point2D -> Integer
-triangleKind a b c = todo
+main :: IO ()
+main = do
+       let a = sin 3 10
+           b = cos 3 10
+           c = gcd 115 10
+           d = isPrime 30
+       putStrLn "-----------"
+       print a
+       putStrLn "-----------"
+       print b
+       putStrLn "-----------"
+       print c
+       putStrLn "-----------"
+       print d
+       putStrLn "-----------"
