@@ -10,7 +10,6 @@ data WeirdPeanoNumber = Zero | Succ WeirdPeanoNumber | Prev WeirdPeanoNumber
 
 -- Реализуйте все классы типов, которым должны отвечать целые числа
 
--- util
 isSimple :: WeirdPeanoNumber -> Bool
 isSimple Zero = True
 isSimple (Succ (Prev _)) = False
@@ -58,7 +57,7 @@ simpleDiv lhv rhv = let dif = lhv - rhv in
                     else 0
 
 
--- class types
+-- классы типов, которым отвечают целые числа
 instance Eq WeirdPeanoNumber where
   (==) lhv rhv = eqSimple (simplify lhv) (simplify rhv)
 
