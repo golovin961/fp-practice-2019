@@ -1,4 +1,4 @@
-module Main where
+module Task1_1 where
 
 {-
   Задание 1.1

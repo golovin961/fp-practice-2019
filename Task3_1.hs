@@ -1,4 +1,4 @@
-module Main where
+module Task3_1 where
 
 {-
   Задание 3.1
@@ -53,7 +53,7 @@ leqSimple (Prev lhv) (Prev rhv) = leqSimple lhv rhv
 simpleDiv :: WeirdPeanoNumber -> WeirdPeanoNumber -> WeirdPeanoNumber
 simpleDiv lhv rhv = let dif = lhv - rhv in
                     if (dif >= Zero) 
-                    then (simpleDIV dif rhv) + 1
+                    then (simpleDiv dif rhv) + 1
                     else 0
 
 
@@ -110,7 +110,7 @@ instance Real WeirdPeanoNumber where
 
 instance Integral WeirdPeanoNumber where
   quotRem lhv rhv = let isNeg = (signum lhv) == (signum rhv) in
-                    let div = simpleDIV (abs lhv) (abs rhv) in
+                    let div = simpleDiv (abs lhv) (abs rhv) in
                     if (isNeg)
                     then (div, simplify $ lhv - div * rhv) 
                     else (negate div, simplify $ lhv - div * rhv)

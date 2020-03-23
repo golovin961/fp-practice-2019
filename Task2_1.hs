@@ -1,4 +1,4 @@
-module Main where
+module Task2_1 where
 
 import Prelude hiding (lookup)
 

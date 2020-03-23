@@ -1,4 +1,4 @@
-module Main where
+module Task1_2 where
 
 import Prelude hiding (cos, sin, gcd)
 

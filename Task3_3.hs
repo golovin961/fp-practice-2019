@@ -1,4 +1,4 @@
-module Main where
+module Task3_3 where
 {-
   Задание 3.3
   Множество на основе предикатов

@@ -6,7 +6,7 @@
   Необходимо реализовать все функции и классы типов в данном файле.
 -}
 
-module Main where
+module Task3_2 where
 
 data ReverseList a = RNil | RCons (ReverseList a) a
 
